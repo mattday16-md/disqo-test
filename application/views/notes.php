@@ -31,7 +31,6 @@
 			<span class="updated">&nbsp;</span>
 		</div>
 	</div>
-
 </div>
 
 </body>
