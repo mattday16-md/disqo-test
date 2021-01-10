@@ -17,6 +17,21 @@ class Notes extends CI_Controller
 		$this->load->view("notes", $dt);
 	}
 	
+	public function load()
+	{
+		$this->determineLogin();
+		$dt = array();
+		
+		$this->load->model("notesmodel");
+		
+		if(!empty($this->session->loggedInId))
+		{
+			$dt['json'] = json_encode($this->notesmodel->getNotes($this->session->loggedInId));	
+		}
+		
+		$this->load->view("json", $dt);
+	}
+	
 	public function save()
 	{
 		$this->determineLogin();
