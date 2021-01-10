@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users_model extends CI_Model 
+class Notes extends CI_Model 
 {
 	public function __construct()
 	{
 		$this->load->database();
 	}
 	
-	public function authenticateIt($un, $pw)
+	public function getNotes($id)
 	{
 		$this->load->database();
 		
@@ -15,6 +15,6 @@ class Users_model extends CI_Model
 		$rs = $this->db->query("SELECT id FROM user WHERE email = ? AND password = ?", array($un, $npw));
 		$rw = $rs->row();
 		
-		return (isset($rw));
+		return (isset($rw)) ? $rw['id'] : false;
 	}
 }

@@ -13,11 +13,14 @@
 	
 	</script>
 </head>
-<body>
+<body onload="loadNotes();">
 
 <h2>Notes Site</h2>
 
 <div id="notes">
+	<div class="prototype">
+		
+	</div>
 
 </div>
 

@@ -5,15 +5,24 @@ class Notes extends CI_Controller
 	public function index()
 	{
 		$this->determineLogin();
+		$dt = array();
 		
-		$this->load->view("notes");
+		$this->load->model("notes");
+		
+		if(!empty($this->session->loggedInId))
+		{
+			$dt['notes'] = $this->notes->getNotes($this->session->loggedInId);	
+		}
+		
+		$this->load->view("notes", $dt);
 	}
 	
 	private function determineLogin()
 	{
+		$rt = false;
 		$this->load->library('session');
 		
-		if(empty($this->session->loggedIn))
+		if(empty($this->session->loggedInId))
 		{
 			if(isset($_SERVER['PHP_AUTH_USER']))
 			{
@@ -22,7 +31,8 @@ class Notes extends CI_Controller
 				
 				if($al)
 				{
-					$this->session->loggedIn = $al;
+					$this->session->loggedInId = $al;
+					$rt = true;
 				}
 				else
 				{
@@ -33,7 +43,9 @@ class Notes extends CI_Controller
 			{
 				$this->sendLoginInfo();
 			}
-		}		
+		}
+		
+		return $rt;
 	}
 	
 	private function sendLoginInfo()

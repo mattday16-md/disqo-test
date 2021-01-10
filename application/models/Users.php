@@ -9,12 +9,10 @@ class Users extends CI_Model
 	
 	public function authenticateIt($un, $pw)
 	{
-		$this->load->database();
-		
 		$npw = password_hash($pw, PASSWORD_DEFAULT);
 		$rs = $this->db->query("SELECT id FROM user WHERE email = ? AND password = ?", array($un, $npw));
 		$rw = $rs->row();
 		
-		return (isset($rw));
+		return (isset($rw)) ? $rw['id'] : false;
 	}
 }
