@@ -27,6 +27,38 @@
 			var nnt = NOTES_PROTOTYPE.cloneNode(true);
 			document.querySelector("#notes").appendChild(nnt);
 		}
+		
+		function saveNote(vt)
+		{
+			var nd = vt.target;
+			
+			var id = nd.querySelector("[name=id]").value;
+			var contents = nd.querySelector("[name=contents]").value;
+			
+			sendRequest({'id': id, 'contents': contents});
+		}
+		
+		function deleteNote(vt)
+		{
+			
+		}
+		
+		function sendRequest(da, ab, mt)
+		{
+			var http = new XMLHttpRequest();
+
+			http.onreadystatechange = function()
+			{
+				if(http.readyState === 4 && http.status === 200)
+				{
+					var rsp = JSON.parse(http.responseText);
+					ab(rsp['status']);
+				}
+			}
+
+			http.open(mt, "http://localhost/notes");
+			http.send();
+        }
 	
 	</script>
 </head>
@@ -42,8 +74,8 @@
 		<input name="id" type="hidden" value="" />
 		<textarea name="contents"></textarea>
 		<div class="notesControlNote">
-			<input type="button" value="Save" onclick="saveNote();" />
-			<input type="button" value="Delete" onclick="deleteNote();" />
+			<input type="button" value="Save" onclick="saveNote(event);" />
+			<input type="button" value="Delete" onclick="deleteNote(event);" />
 			<span class="created">&nbsp;</span>
 			<span class="updated">&nbsp;</span>
 		</div>
