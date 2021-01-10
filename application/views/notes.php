@@ -46,7 +46,20 @@
 		
 		function deleteNote(vt)
 		{
+			var nd = vt.target.parentNode.parentNode;
 			
+			var id = nd.querySelector("[name=id]").value;
+			
+			var fn = function(dt)
+			{
+				nd.querySelector("[name=id]").value = dt;
+			};
+			
+			if(window.confirm("Are you sure?"))
+			{
+				sendRequest({'id': id}, fn, "http://localhost/index.php/notes/delete", "POST");
+				nd.parentNode.removeChild(nd);
+			}
 		}
 		
 		function sendRequest(da, ab, ur, mt)

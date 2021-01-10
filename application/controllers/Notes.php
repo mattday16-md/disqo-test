@@ -30,7 +30,13 @@ class Notes extends CI_Controller
 	
 	public function delete()
 	{
+		$this->determineLogin();
+		$this->load->model("notesmodel");
 		
+		$ar = $this->getJSON();
+		$rs = $this->notesmodel->deleteNote($ar->id);	
+		
+		$this->load->view("json", array('json' => json_encode($rs)));
 	}
 	
 	private function determineLogin()

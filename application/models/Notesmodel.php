@@ -45,6 +45,22 @@ class NotesModel extends CI_Model
 		
 		return $rt;
 	}
+	
+	public function deleteNote($id)
+	{
+		$rt = true;
+		
+		try
+		{
+			$this->db->query("DELETE FROM note WHERE id = ?", array($id));
+		}
+		catch(Exception $x)
+		{
+			$rt = false;
+		}
+		
+		return $rt;
+	}
 }
 
 ?>
