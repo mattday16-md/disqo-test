@@ -6,6 +6,11 @@
 	<title>Notes Site</title>
 
 	<style type="text/css">
+	
+		.note
+		{
+			margin-bottom: 15px;
+		}
 
 	</style>
 	
@@ -107,9 +112,9 @@
 		Contents: <textarea name="contents"><?= $n->contents ?></textarea>
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
-			<input type="button" value="Delete" onclick="deleteNote(event);" />
-			<span class="created"><?= $n->create_time ?></span>
-			<span class="updated"><?= $n->last_update_time ?></span>
+			<input type="button" value="Delete" onclick="deleteNote(event);" /> <br />
+			Created: <span class="created"><?= $n->create_time ?></span> <br />
+			Last Updated: <span class="updated"><?= $n->last_update_time ?></span> <br />
 		</div>
 	</div>
 	<?php } ?>
