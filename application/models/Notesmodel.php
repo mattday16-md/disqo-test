@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Notes extends CI_Model 
+class NotesModel extends CI_Model 
 {
 	public function __construct()
 	{
@@ -13,7 +13,7 @@ class Notes extends CI_Model
 		
 		$rs = $this->db->query("SELECT id,title,contents,create_time,last_update_time FROM note WHERE user = ?", array($id));
 		
-		foreach($rs->query_result() as $rw)
+		foreach($rs->result() as $rw)
 		{
 			$rt[] = $rw;
 		}
