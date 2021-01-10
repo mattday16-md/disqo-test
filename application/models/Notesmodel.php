@@ -15,6 +15,9 @@ class NotesModel extends CI_Model
 		
 		foreach($rs->result() as $rw)
 		{
+			$rw->create_time = (new DateTime($rw->create_time))->format("Y-m-d H:i:s");
+			$rw->last_update_time = (new DateTime($rw->last_update_time))->format("Y-m-d H:i:s");
+			
 			$rt[] = $rw;
 		}
 		

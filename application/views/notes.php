@@ -96,25 +96,25 @@
 <div id="notes">
 	<div class="prototype">
 		<input name="id" type="hidden" value="" />
-		Title: <input name="title" type="text" value="" /> <br />
-		Contents: <textarea name="contents"></textarea> <br />
+		<span class="fieldLab">Title:</span> <input name="title" type="text" value="" /> <br />
+		<span class="fieldLab">Contents:</span> <textarea name="contents"></textarea> <br />
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
 			<input type="button" value="Delete" onclick="deleteNote(event);" />
-			<span class="created">&nbsp;</span>
-			<span class="updated">&nbsp;</span>
+			<span class="fieldLab">Created: </span><span class="created">&nbsp;</span> <br />
+			<span class="fieldLab">Last Updated: </span><span class="updated">&nbsp;</span> <br />
 		</div>
 	</div>
 	<?php foreach($notes as $n) { ?>
 	<div class="note">
 		<input name="id" type="hidden" value="<?= $n->id ?>" />
-		Title: <input name="title" type="text" value="<?= $n->title ?>" /> <br />
-		Contents: <textarea name="contents"><?= $n->contents ?></textarea>
+		<span class="fieldLab">Title:</span><input name="title" type="text" value="<?= $n->title ?>" /> <br />
+		<span class="fieldLab">Contents:</span> <textarea name="contents"><?= $n->contents ?></textarea>
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
 			<input type="button" value="Delete" onclick="deleteNote(event);" /> <br />
-			Created: <span class="created"><?= $n->create_time ?></span> <br />
-			Last Updated: <span class="updated"><?= $n->last_update_time ?></span> <br />
+			<span class="fieldLab">Created: </span><span class="created"><?= (new DateTime($n->create_time))->format("r") ?></span> <br />
+			<span class="fieldLab">Last Updated: </span><span class="updated"><?= (new DateTime($n->last_update_time))->format("r") ?></span> <br />
 		</div>
 	</div>
 	<?php } ?>
