@@ -38,7 +38,7 @@
 			
 			var fn = function(dt)
 			{
-				console.log(dt);
+				nd.querySelector("[name=id]").value = dt;
 			};
 			
 			sendRequest({'id': id, 'title': t, 'contents': contents}, fn, "http://localhost/index.php/notes/save", "POST");
@@ -58,7 +58,7 @@
 				if(http.readyState === 4 && http.status === 200)
 				{
 					var rsp = JSON.parse(http.responseText);
-					ab(rsp['status']);
+					ab(rsp);
 				}
 			}
 
@@ -90,7 +90,8 @@
 	<?php foreach($notes as $n) { ?>
 	<div class="note">
 		<input name="id" type="hidden" value="<?= $n->id ?>" />
-		<textarea name="contents"><?= $n->contents ?></textarea>
+		Title: <input name="title" type="text" value="<?= $n->title ?>" /> <br />
+		Contents: <textarea name="contents"><?= $n->contents ?></textarea>
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
 			<input type="button" value="Delete" onclick="deleteNote(event);" />
