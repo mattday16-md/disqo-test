@@ -30,12 +30,18 @@
 		
 		function saveNote(vt)
 		{
-			var nd = vt.target;
+			var nd = vt.target.parentNode.parentNode;
 			
 			var id = nd.querySelector("[name=id]").value;
+			var t = nd.querySelector("[name=title]").value;
 			var contents = nd.querySelector("[name=contents]").value;
 			
-			sendRequest({'id': id, 'contents': contents});
+			var fn = function(dt)
+			{
+				console.log(dt);
+			};
+			
+			sendRequest({'id': id, 'title': t, 'contents': contents}, fn, "http://localhost/index.php/notes/save", "POST");
 		}
 		
 		function deleteNote(vt)
@@ -43,7 +49,7 @@
 			
 		}
 		
-		function sendRequest(da, ab, mt)
+		function sendRequest(da, ab, ur, mt)
 		{
 			var http = new XMLHttpRequest();
 
@@ -56,8 +62,8 @@
 				}
 			}
 
-			http.open(mt, "http://localhost/notes");
-			http.send();
+			http.open(mt, ur);
+			http.send(JSON.stringify(da));
         }
 	
 	</script>
@@ -72,7 +78,8 @@
 <div id="notes">
 	<div class="prototype">
 		<input name="id" type="hidden" value="" />
-		<textarea name="contents"></textarea>
+		Title: <input name="title" type="text" value="" /> <br />
+		Contents: <textarea name="contents"></textarea> <br />
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
 			<input type="button" value="Delete" onclick="deleteNote(event);" />

@@ -20,6 +20,20 @@ class NotesModel extends CI_Model
 		
 		return $rt;
 	}
+	
+	public function saveNote($id, $nid, $tt, $nt)
+	{
+		if(!empty($nid))
+		{
+			$this->db->query("UPDATE note SET title = ?, contents = ? WHERE id = ?", array($tt, $nt, $nid));
+		}
+		else
+		{
+			$this->db->query("INSERT INTO note (title,contents) VALUES (?, ?)", array($tt, $nt));
+		}
+		
+		return true;
+	}
 }
 
 ?>

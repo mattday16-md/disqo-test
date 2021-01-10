@@ -17,12 +17,18 @@ class Notes extends CI_Controller
 		$this->load->view("notes", $dt);
 	}
 	
-	public function saveNote()
+	public function save()
 	{
+		$this->determineLogin();
+		$this->load->model("notesmodel");
 		
+		$ar = $this->getJSON();
+		$rs = $this->notesmodel->saveNote($this->session->loggedInId, $ar->id, $ar->title, $ar->contents);	
+		
+		$this->load->view("json", array('json' => json_encode($rs)));
 	}
 	
-	public function deleteNote()
+	public function delete()
 	{
 		
 	}
@@ -68,7 +74,7 @@ class Notes extends CI_Controller
 	
 	private function getJSON()
 	{
-		return json_decode($this->input->raw_input_stream); 
+		return json_decode(file_get_contents("php://input", true)); 
 	}
 }
 
