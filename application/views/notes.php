@@ -8,9 +8,18 @@
 	<style type="text/css">
 
 	</style>
+	
+	<script type="text/javascript">
+	
+	</script>
 </head>
 <body>
 
+<h2>Notes Site</h2>
+
+<div id="notes">
+
+</div>
 
 </body>
 </html>

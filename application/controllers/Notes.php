@@ -12,20 +12,34 @@ class Notes extends CI_Controller
 	private function determineLogin()
 	{
 		$this->load->library('session');
-		$this->load->database();
 		
-		if(empty($this->session->loginKey))
+		if(empty($this->session->loggedIn))
 		{
 			if(isset($_SERVER['PHP_AUTH_USER']))
 			{
-				$this->db->query("SELECT id FROM user WHERE 
+				$this->load->model("users");
+				$al = $this->users->authenticateIt($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+				
+				if($al)
+				{
+					$this->session->loggedIn = $al;
+				}
+				else
+				{
+					$this->sendLoginInfo();
+				}
 			}
 			else
 			{
-				$this->output->set_header('WWW-Authenticate: Basic realm="Notes System"');
-				$this->output->set_header('HTTP/1.0 401 Unauthorized');
-				echo 'Invalid Login';
+				$this->sendLoginInfo();
 			}
 		}		
+	}
+	
+	private function sendLoginInfo()
+	{
+		$this->output->set_header('WWW-Authenticate: Basic realm="Notes System"');
+		$this->output->set_header('HTTP/1.0 401 Unauthorized');
+		echo 'Invalid Login';
 	}
 }
