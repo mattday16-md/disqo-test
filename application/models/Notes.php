@@ -9,12 +9,17 @@ class Notes extends CI_Model
 	
 	public function getNotes($id)
 	{
-		$this->load->database();
+		$rt = array();
 		
-		$npw = password_hash($pw, PASSWORD_DEFAULT);
-		$rs = $this->db->query("SELECT id FROM user WHERE email = ? AND password = ?", array($un, $npw));
-		$rw = $rs->row();
+		$rs = $this->db->query("SELECT id,title,contents,create_time,last_update_time FROM note WHERE user = ?", array($id));
 		
-		return (isset($rw)) ? $rw['id'] : false;
+		foreach($rs->query_result() as $rw)
+		{
+			$rt[] = $rw;
+		}
+		
+		return $rt;
 	}
 }
+
+?>

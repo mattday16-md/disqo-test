@@ -55,3 +55,5 @@ class Notes extends CI_Controller
 		echo 'Invalid Login';
 	}
 }
+
+?>
