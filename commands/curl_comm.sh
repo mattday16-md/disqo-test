@@ -1,0 +1,2 @@
+curl --header "Content-Type: application/json" --request POST --data '{"id":"3"}' http://localhost/index.php/notes/delete
+curl --user mattday16@gmail.com:password --header "Content-Type: application/json" --request POST --data '{"id": "", "title":"test", "contents": "test"}' http://localhost/index.php/notes/save
