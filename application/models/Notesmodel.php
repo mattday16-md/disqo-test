@@ -29,7 +29,7 @@ class NotesModel extends CI_Model
 		{
 			if(!empty($nid))
 			{
-				$this->db->query("UPDATE note SET title = ?, contents = ? WHERE id = ?", array($tt, $nt, $nid));
+				$this->db->query("UPDATE note SET title = ?, contents = ?, last_update_time = NOW() WHERE id = ?", array($tt, $nt, $nid));
 				$rt = $nid;
 			}
 			else
