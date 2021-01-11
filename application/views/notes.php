@@ -100,7 +100,7 @@
 		<span class="fieldLab">Contents:</span> <textarea name="contents"></textarea> <br />
 		<div class="notesControlNote">
 			<input type="button" value="Save" onclick="saveNote(event);" />
-			<input type="button" value="Delete" onclick="deleteNote(event);" />
+			<input type="button" value="Delete" onclick="deleteNote(event);" /> <br />
 			<span class="fieldLab">Created: </span><span class="created">&nbsp;</span> <br />
 			<span class="fieldLab">Last Updated: </span><span class="updated">&nbsp;</span> <br />
 		</div>

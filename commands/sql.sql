@@ -19,6 +19,6 @@ CREATE TABLE note
 	FOREIGN KEY (`user`) REFERENCES `user`(id)
 );
 
-INSERT INTO `user` (email, password) VALUES ('mattday16@gmail.com', '$2y$10$AzegDz0US/O/bn8cZrjzsu1bk0BKS4FCZu2/yPQu3w6o5xyp39lmu');
-INSERT INTO `user` (email, password) VALUES ('mattday17@gmail.com', '$2y$10$3BkDR0CRA.8LcMyiuoKNC.LBxueMh.ltTppTmfcDuOaF2K1angPc.');
-INSERT INTO `user` (email, password) VALUES ('mattday18@gmail.com', '$2y$10$5eh5JJPzthtQX374mDfCT.rzZZcFmMW5pN2ncZWxwialaMcYBOST.');
+INSERT INTO `user` (email, password) VALUES ('mattday16@gmail.com', '$2y$10$AzegDz0US/O/bn8cZrjzsu1bk0BKS4FCZu2/yPQu3w6o5xyp39lmu'); -- password: password
+INSERT INTO `user` (email, password) VALUES ('mattday17@gmail.com', '$2y$10$3BkDR0CRA.8LcMyiuoKNC.LBxueMh.ltTppTmfcDuOaF2K1angPc.'); -- password: password2
+INSERT INTO `user` (email, password) VALUES ('mattday18@gmail.com', '$2y$10$5eh5JJPzthtQX374mDfCT.rzZZcFmMW5pN2ncZWxwialaMcYBOST.'); -- password: password3 
